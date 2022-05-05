@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "iosevka term" :size 18))
+(setq doom-font (font-spec :family "iosevka term" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -57,25 +57,25 @@
 ;; they are implemented.
 
 
-(use-package mu4e
-  :ensure nil
-  :load-path "/usr/share/emacs/site-lisp/mu4e/"
-  :config
-
-  (setq mu4e-change-filenames-when-moving t)
-
-  (setq mu4e-update-interval (* 10 60))
-  (setq mu4e-get-mail-command "mbsync -a")
-  (setq mu4e-root-maildir "~/Mail")
-
-  (setq mu4e-drafts-folder      "/[Gmail]/Drafts")
-  (setq mu4e-sent-folder        "/[Gmail]/Sent Mail")
-  (setq mu4e-refile-folder      "/[Gmail]/All Mail")
-  (setq mu4e-trash-folder       "/[Gmail]/Trash")
-
-  (setq mu4e-maildir-shortcuts
-        '(("/Inbox"                     . ?i)
-          ("/[Gmail]/Sent Mail"         . ?s)
-          ("/[Gmail]/Trash"             . ?t)
-          ("/[Gmail]/Drafts"            . ?d)
-          ("/[Gmail]/All Mail"          . ?a))))
+;; (use-package mu4e
+;;   :ensure nil
+;;   :load-path "/usr/share/emacs/site-lisp/mu4e/"
+;;   :config
+;;
+;;   (setq mu4e-change-filenames-when-moving t)
+;;
+;;   (setq mu4e-update-interval (* 10 60))
+;;   (setq mu4e-get-mail-command "mbsync -a")
+;;   (setq mu4e-root-maildir "~/Mail")
+;;
+;;   (setq mu4e-drafts-folder      "/[Gmail]/Drafts")
+;;   (setq mu4e-sent-folder        "/[Gmail]/Sent Mail")
+;;   (setq mu4e-refile-folder      "/[Gmail]/All Mail")
+;;   (setq mu4e-trash-folder       "/[Gmail]/Trash")
+;;
+;;   (setq mu4e-maildir-shortcuts
+;;         '(("/Inbox"                     . ?i)
+;;           ("/[Gmail]/Sent Mail"         . ?s)
+;;           ("/[Gmail]/Trash"             . ?t)
+;;           ("/[Gmail]/Drafts"            . ?d)
+;;           ("/[Gmail]/All Mail"          . ?a))))
