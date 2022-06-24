@@ -48,6 +48,12 @@
 (setq org-agenda-start-on-weekday 1)
 (setq calendar-week-start-day 1)
 
+;; real auto save config
+;; only work in org mode
+(require 'real-auto-save)
+(add-hook 'org-mode-hook 'real-auto-save-mode)
+(setq real-auto-save-interval 5) ;; in seconds
+
 ;;(setq c-default-style (cons '(c-mode . "cc-mode") c-default-style))
 
 ;; Here are some additional functions/macros that could help you configure Doom:
