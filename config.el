@@ -27,7 +27,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-horizon)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -36,6 +36,17 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
+
+;; Custom org mode config
+(add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
+(setq org-agenda-span (quote week))
+(setq org-agenda-window-setup (quote other-window))
+(setq org-agenda-show-future-repeats nil)
+(setq org-deadline-warning-days 14)
+(setq org-startup-folded t)
+(setq org-ellipsis " >")
+(setq org-agenda-start-on-weekday 1)
+(setq calendar-week-start-day 1)
 
 ;;(setq c-default-style (cons '(c-mode . "cc-mode") c-default-style))
 
