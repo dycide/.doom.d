@@ -22,7 +22,11 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font (font-spec :family "iosevka term" :size 16))
+(setq doom-font (font-spec :family "iosevka term" :size 14))
+(if IS-MAC
+(custom-set-variables
+'(irony-additional-clang-options
+'("-I/Library/Developer/CommandLineTools/usr/include/c++/v1"))))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -49,7 +53,7 @@
 (setq calendar-week-start-day 1)
 
 ;; real auto save config
-;; only work in org mode
+;; only work in org
 (require 'real-auto-save)
 (add-hook 'org-mode-hook 'real-auto-save-mode)
 (setq real-auto-save-interval 5) ;; in seconds
@@ -73,7 +77,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-
 ;; (use-package mu4e
 ;;   :ensure nil
 ;;   :load-path "/usr/share/emacs/site-lisp/mu4e/"
@@ -96,3 +99,31 @@
 ;;           ("/[Gmail]/Trash"             . ?t)
 ;;           ("/[Gmail]/Drafts"            . ?d)
 ;;           ("/[Gmail]/All Mail"          . ?a))))
+(use-package lsp-mode
+  :ensure t
+  :hook  ((c-mode . lsp)
+	  (c++-mode . lsp)
+	  (zig-mode . lsp)
+	  (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp
+  :config
+  (setq lsp-keymap-prefix "C-c l")
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+  (setq lsp-file-watch-threshold 15000))
+
+(use-package lsp-ui
+  :ensure t
+  :commands (lsp-ui-mode)
+  :config
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-delay 0.5)
+  (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+  (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
+
+(use-package lsp-ivy
+  :ensure t
+  :commands lsp-ivy-workspace-symbol)
+
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)
