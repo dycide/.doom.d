@@ -43,14 +43,17 @@
 
 ;; Custom org mode config
 (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
-(setq org-agenda-span (quote week))
-(setq org-agenda-window-setup (quote other-window))
-(setq org-agenda-show-future-repeats nil)
-(setq org-deadline-warning-days 14)
-(setq org-startup-folded t)
-(setq org-ellipsis " >")
-(setq org-agenda-start-on-weekday 1)
-(setq calendar-week-start-day 1)
+
+(after! org
+  (setq org-agenda-span (quote week))
+  (setq org-agenda-window-setup (quote other-window))
+  (setq org-agenda-show-future-repeats nil)
+  (setq org-deadline-warning-days 14)
+  (setq org-startup-folded t)
+  (setq org-ellipsis " >")
+  (setq org-agenda-start-on-weekday 1)
+  (setq calendar-week-start-day 1))
+
 
 ;; real auto save config
 ;; only work in org
