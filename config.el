@@ -31,8 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-tokyo-night)
-(setq doom-dark+-blue-modeline t)
+(setq doom-theme 'doom-horizon)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -41,7 +40,7 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
-
+(setq display-line-numbers 'relative)
 ;; Custom org mode config
 (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
 
@@ -55,8 +54,13 @@
   (setq org-agenda-start-on-weekday 1)
   (setq calendar-week-start-day 1))
 
+(setenv "SHELL" "/bin/fish")
+(setq-default vterm-shell "/bin/fish")
+(setq-default explicit-shell-file-name "/bin/fish")
 
-;; real auto save config
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+;; Real auto save config
 ;; only work in org
 (require 'real-auto-save)
 (add-hook 'org-mode-hook 'real-auto-save-mode)
@@ -172,3 +176,15 @@
 (use-package lsp-treemacs
   :ensure t
   :commands lsp-treemacs-errors-list)
+
+(use-package! zig-mode
+  :hook ((zig-mode . lsp-deferred))
+  :custom (zig-format-on-save nil)
+  :config
+  (after! lsp-mode
+    (add-to-list 'lsp-language-id-configuration '(zig-mode . "zig"))
+    (lsp-register-client
+      (make-lsp-client
+        :new-connection (lsp-stdio-connection "~/dev/thirdparty/zls/zig-out/bin/zls")
+        :major-modes '(zig-mode)
+        :server-id 'zls))))
