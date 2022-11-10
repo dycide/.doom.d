@@ -39,8 +39,8 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
-(setq display-line-numbers 'relative)
+(setq display-line-numbers-type 'relative)
+;; (setq display-line-numbers 'relative)
 ;; Custom org mode config
 (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
 
@@ -57,7 +57,6 @@
 (setenv "SHELL" "/bin/fish")
 (setq-default vterm-shell "/bin/fish")
 (setq-default explicit-shell-file-name "/bin/fish")
-
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 ;; Real auto save config
